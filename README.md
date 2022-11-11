@@ -1,1 +1,1 @@
-# 2D-To-3D-Object-Reconstruction
+# 2D To 3D Object Reconstruction
