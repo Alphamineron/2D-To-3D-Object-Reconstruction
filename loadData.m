@@ -13,8 +13,11 @@ function [XTrain, YTrain] = loadData(dirName)
     lightDirs(end) = [];
     YTrain = [];
     for light = lightDirs
-        vec = strsplit("" + light, " ");
-        YTrain = cat(1, YTrain, vec);
+        cart = strsplit("" + light, " ");
+        x = str2double(cart(1));
+        y = str2double(cart(2));
+        z = str2double(cart(3));
+        [th, phi] = cart2sph(x, y, z);
+        YTrain = cat(1, YTrain, [th, phi]);
     end
-    YTrain = str2double(YTrain);
 end
