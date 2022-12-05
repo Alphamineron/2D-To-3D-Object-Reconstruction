@@ -1,1 +1,444 @@
-Hello World
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>2D To 3D Reconstruction</title>
+    <link href="images/favicon-bb70b6e5.ico" rel="icon" type="image/ico" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:900italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="stylesheets/header-a3ad35e9.css">
+
+
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-9469d2b6.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-b12a2749.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;python&quot;]">
+    <header></header>
+
+    <div class="slate-wrapper"> 
+      <a href="#" id="nav-button">
+        <span>
+          NAV
+          <img src="images/navbar-cad8cdcb.png" alt="" />
+        </span>
+      </a>
+      <div class="toc-wrapper">
+        <img src="images/logo-255b6f0d.png" class="logo" alt="" />
+          <div class="lang-selector">
+                <a href="#" data-language-name="python">Python</a>
+          </div>
+          <div class="search">
+            <input type="text" class="search" id="input-search" placeholder="Search">
+          </div>
+          <ul class="search-results"></ul>
+        <ul id="toc" class="toc-list-h1">
+            <li>
+              <a href="#2d-to-3d-object-reconstruction" class="toc-h1 toc-link" data-title="2D To 3D Object Reconstruction">2D To 3D Object Reconstruction</a>
+            </li>
+            <li>
+              <a href="#setup-your-system" class="toc-h1 toc-link" data-title="Setup Your System">Setup Your System</a>
+                <ul class="toc-list-h2">
+                    <li>
+                      <a href="#terminal" class="toc-h2 toc-link" data-title="Terminal">Terminal</a>
+                    </li>
+                    <li>
+                      <a href="#text-editor-ide-jupyternotebooks" class="toc-h2 toc-link" data-title="Text-Editor / IDE / JupyterNotebooks">Text-Editor / IDE / JupyterNotebooks</a>
+                    </li>
+                    <li>
+                      <a href="#anaconda" class="toc-h2 toc-link" data-title="Anaconda">Anaconda</a>
+                    </li>
+                    <li>
+                      <a href="#version-control" class="toc-h2 toc-link" data-title="Version Control">Version Control</a>
+                    </li>
+                    <li>
+                      <a href="#python-3-x" class="toc-h2 toc-link" data-title="Python 3.x">Python 3.x</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+              <a href="#machine-learning" class="toc-h1 toc-link" data-title="Machine Learning">Machine Learning</a>
+            </li>
+            <li>
+              <a href="#neural-networks" class="toc-h1 toc-link" data-title="Neural Networks">Neural Networks</a>
+                <ul class="toc-list-h2">
+                    <li>
+                      <a href="#how-do-they-learn" class="toc-h2 toc-link" data-title="How do they learn?">How do they learn?</a>
+                    </li>
+                    <li>
+                      <a href="#intuition-of-neural-networks" class="toc-h2 toc-link" data-title="Intuition of Neural Networks">Intuition of Neural Networks</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+          <ul class="toc-footer">
+              <li>Project By <a href="">Ankur Singh, Kevin Joseph, Sarah Kowal, Rohit Singhal</a></li>
+          </ul>
+      </div>
+      <div class="page-wrapper">
+        <div class="dark-box"></div>
+        <div class="content">
+          <!-- [CHAPTER1](Chapter1.html) -->
+<h1 id='2d-to-3d-object-reconstruction'>2D To 3D Object Reconstruction</h1>
+<p>This is a resource library that contains a structured set of blog posts, documentation sites and courses from the ever expanding web of the internet. Here, you&#39;d find my best curated resources that&#39;ll help you gain a deep understanding of the subject while saving your time.</p>
+
+<aside class="warning">
+This is a Curated list of resources and tips that can help you speed up your process of exploring Deep Learning. As it goes, you are not bound to the resources provided here.
+</aside>
+
+<p>Before we move on, A little tip - you might find it useful to keep these glossaries in handy or go for a quick Google search whenever you find any confusing term that you get stuck on.</p>
+
+<ul>
+<li><a href="http://www.wildml.com/deep-learning-glossary/">WILDML Deep Learning Glossary</a></li>
+<li><a href="https://ml-cheatsheet.readthedocs.io/en/latest/glossary.html">ML Cheatsheet Glossary</a></li>
+<li><a href="https://developers.google.com/machine-learning/glossary">Google ML Glossary</a></li>
+<li><a href="https://towardsdatascience.com/the-a-z-of-ai-and-machine-learning-comprehensive-glossary-fb6f0dd8230">A Glossary in an Article</a></li>
+<li><a href="https://machinelearning.wtf/">Machine Learning Glossary</a></li>
+</ul>
+<h1 id='setup-your-system'>Setup Your System</h1>
+<p>Before we begin, I&#39;d strongly recommend that if you&#39;re using <strong>windows</strong> then shift to Linux or MacOS before you start.
+You can go ahead, install Ubuntu.</p>
+<h2 id='terminal'>Terminal</h2>
+<p>This is a programmer&#39;s most important tool, no matter which field you pursue in computer science you&#39;d find yourself coming back to the terminal for a variety of reasons. You can refer to the following guide to get started:</p>
+
+<ul>
+<li><a href="http://www.ee.surrey.ac.uk/Teaching/Unix/">UNIX Tutorial for Beginners</a></li>
+</ul>
+<h2 id='text-editor-ide-jupyternotebooks'>Text-Editor / IDE / JupyterNotebooks</h2>
+<p>IDEs and Texteditors are quite different products and I&#39;d personally recommend using a text-editor like Atom, or VSCode for working on your system or even JupyterNotebooks if you prefer working through the browser itself.
+Explore these things and chose whatever you feel most comfortable with but don&#39;t waste more than 2-3hrs on deciding which one to use and don&#39;t waste a lot more of time setting up all the extensions and themes to customize the editor to your choice just yet, unless you are like me. <strong>Get started right now, do all that along the way.</strong></p>
+<h2 id='anaconda'>Anaconda</h2>
+<p>It is an environment manager tool for python. What do I mean by that? <br>
+Well, you&#39;ll do many projects with python. Each project has its own requirements, a specific set of libraries to be used in that project. Conda helps us create a separate environment for each project. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>For eg</strong> - one of your projects needs python 3.7 but other one needs version 3.6, so if you make separate virtual conda environments for each of your projects you can choose exactly which libraries and versions to install and they will be installed only for that particular environment. <br>
+Download the Python3.x version from <a href="https://www.anaconda.com/distribution/">Anaconda&#39;s Official Website</a>...</p>
+
+<ul>
+<li>Refer to this <a href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf">cheat sheet</a> if you&#39;re looking for a conda command. Otherwise, do a thorough google search, that always works out.</li>
+</ul>
+
+<p><code>$ conda create -n first_project</code> - Create a new environment named first_project</p>
+
+<p><code>$ conda activate first_project</code> - Activate the environment</p>
+
+<p>Now, any python program you run through the terminal will use the libraries installed in the environment (first_project) and any modules you install from the web will also be installed in that environment and not in your Operating System&#39;s Python Installment, which as you might guess, you should avoid messing with.</p>
+<h2 id='version-control'>Version Control</h2>
+<ol>
+<li><strong>Technology</strong>: Git</li>
+<li><strong>Remote Hosting Service</strong>: GitHub</li>
+</ol>
+
+<p>Git is universally used in every situation where version control is useful, which is mostly the case. So it&#39;s a good technology to improve on from a career standpoint other than a learning standpoint.
+You can even manage your own local coding environment using git.</p>
+
+<p>To get started with the two, refer to the following resources:</p>
+
+<ul>
+<li><a href="https://towardsdatascience.com/git-for-noobs-7a846ce98c9a">Article on Git for beginners</a>
+
+<ul>
+<li>Great article to get to know Git if you have no idea what this is about.</li>
+</ul></li>
+<li><a href="https://guides.github.com/activities/hello-world/">Tutorial for getting started with GitHub</a>
+
+<ul>
+<li>Quick GitHub tutorial to help you brush up if you&#39;re just rusty.</li>
+</ul></li>
+<li><a href="https://www.atlassian.com/git">In-Depth Git Guide</a> by Atlassian
+
+<ul>
+<li>This is an incredible resource for learning git as it goes from installation to mastery in a consistent manner. Best use of such heavy course-like resources is to treat them as reference sources that you can jump to when you need rather than trying to complete them from start to finish.</li>
+</ul></li>
+<li>Resources taken from GitHub:
+
+<ul>
+<li><a href="https://learngitbranching.js.org/">Learn Git branching</a></li>
+<li>Try Git commands right from your web browser. Featuring some of your soon-to-be favorites: branch, add, commit, merge, revert, cherry-pick, rebase!</li>
+<li><a href="http://git-school.github.io/visualizing-git/">Visualizing Git</a></li>
+<li>Look under the hood! Explore how Git commands affect the structure of a repository within your web browser with a free explore mode, and some constructed scenarios.</li>
+<li><a href="https://github.com/jlord/git-it-electron#what-to-install">Git-It</a></li>
+<li>This is a community made application. Download Git-It to your machine and you’ll get a hands-on tutorial that teaches you to use Git right from your local environment, using commands on real repositories.</li>
+<li><a href="https://github.github.com/training-kit/">Git Cheat Sheets</a></li>
+<li>Reference sheets covering Git commands, features, SVN migrations, and bash.</li>
+<li><a href="https://guides.github.com/introduction/git-handbook/">Git HandBook</a></li>
+<li>Learn all the lingo and the basics of Git.</li>
+</ul></li>
+</ul>
+
+<p>Also, you&#39;d be needing a browser. I hope you have that, preferably Google Chrome.</p>
+<h2 id='python-3-x'>Python 3.x</h2>
+<p>You&#39;d also be needing Python 3.x where the &#39;x&#39; can be any number, however, we&#39;d recommend you make a conda environment of <code>python 3.6</code>, also <strong>if you are just starting out, don&#39;t worry.</strong> The best way I found to learn python was to simply try to build something, It can very well be a simple information storing command line program. If you&#39;re already aware of basic programming concepts such as OOP, functions, loops, data structures, etc... then the following resource is enough to get you going:</p>
+
+<ul>
+<li><a href="http://cs231n.github.io/python-numpy-tutorial/">Quick Python + Numpy Intro - Stanford CS231n</a></li>
+</ul>
+<h1 id='machine-learning'>Machine Learning</h1>
+<p>It’s the art of inferring patterns and structures from data without giving explicit instructions on how to infer these patterns. Which is quite the opposite of what we do in traditional programming.</p>
+
+<ul>
+<li><a href="https://www.coursera.org/learn/machine-learning">Andrew Ng&#39;s ML Course (Do at least till Week3)</a>
+
+<ul>
+<li>We expect you to complete Linear, Polynomial and Multivariate Regression from this course along with Logistic Regression. For Neural Networks and SVM, you may refer to the other provided resources.</li>
+</ul></li>
+</ul>
+<h1 id='neural-networks'>Neural Networks</h1>
+<ul>
+<li><a href="http://neuralnetworksanddeeplearning.com/chap1.html"><strong>In-Depth</strong>: Neural Networks</a>
+
+<ul>
+<li>Recommended for a good understanding of the underlying origin &amp; working of Neural Networks</li>
+</ul></li>
+<li><a href="https://www.youtube.com/watch?v=aircAruvnKk&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"><strong>Visual</strong>: Neural Networks (3Blue1Brown)</a></li>
+<li><a href="http://cs231n.github.io/">Stanford&#39;s CS231n Course</a>
+
+<ul>
+<li>It provides an in-depth introduction to some common ML concepts that serve as a good gradual learning path for reaching Neural Networks and CNNs. <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Note:</strong> This resource works well when you don&#39;t worship it as the only thing that you&#39;d use to learn ML - Combine it with other stuff and Don&#39;t hesitate to search for other sources for possible alternative explanations of the mentioned concepts.
+<br> <a href="https://www.youtube.com/watch?v=vT1JzLTH4G4&amp;list=PLC1qU-LWwrF64f4QKQT-Vg5Wr4qEE1Zxk"><strong><sup>[Video Lectures Available]</sup></strong></a></li>
+</ul></li>
+</ul>
+<h2 id='how-do-they-learn'>How do they learn?</h2>
+<ul>
+<li><a href="https://towardsdatascience.com/laymans-introduction-to-backpropagation-efa2c64437db">Brief Introduction</a>
+
+<ul>
+<li>Good for getting a grasp of the concept behind backpropagation in brief.</li>
+</ul></li>
+<li><a href="http://neuralnetworksanddeeplearning.com/chap2.html"><strong>In-Depth</strong>: How the backpropagation algorithm works</a>
+
+<ul>
+<li>For getting an in-depth understanding of BackPropagation Algorithm and Implementing your own in Python.</li>
+</ul></li>
+<li><a href="https://www.youtube.com/watch?v=Ilg3gGewQ5U&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=3"><strong>Visual</strong>: Back-Propagation (3Blue1Brown)</a></li>
+<li><a href="https://www.youtube.com/watch?v=Ilg3gGewQ5U&amp;list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&amp;index=3"><strong>Visual</strong>: Back-Propagation calculus (3Blue1Brown)</a></li>
+</ul>
+<h2 id='intuition-of-neural-networks'>Intuition of Neural Networks</h2>
+<blockquote>
+<p><img src="http://cs231n.github.io/assets/nn1/layer_sizes.jpeg" alt="Source: Stanford CS231n" />
+You can see, as we increase the complexity of the Neural Network (number of hidden neurons) it is able to form more complex solutions as shown in the image above.</p>
+</blockquote>
+
+<p>Lets start with a formal but quite beautifully simple, explanation (Don&#39;t worry if you don&#39;t understand, you&#39;re not meant to, this is just to set your mind going in the right direction).</p>
+<h3 id='universal-function-approximators'>Universal Function Approximators</h3>
+<p>Ultimately, A Neural Network is a networked combination of linear functions (y = ax +b) combined with non-linear activation functions (takes inputs and returns -1 to 1, or 0-1, etc.).</p>
+
+<p>By combining linear with non-linear, and lots of them, and providing a training process to refine the linear functions settings (via weights and bias), it allows a neural network to approximate nearly any type of function, and thus any problem and solution. Hence, the reference to neural networks as ‘Universal function approximators’.</p>
+
+        </div>
+        <div class="dark-box">
+            <div class="lang-selector">
+                  <a href="#" data-language-name="python">Python</a>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.rawgit.com/riccardoscalco/textures/master/dist/textures.js"></script>
+    <script src="javascripts/header-06fc3421.js"></script>
+  </body>
+</html>
