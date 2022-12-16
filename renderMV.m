@@ -17,10 +17,8 @@ function renderMV(path)
         depths = cat(3, depths, depth);
     end
     i = 1;
+    figure;
     model = mesh(depths(:, :, 1));
-    rotate(model, [0 0 1], 90);
-    rotate(model, [0 1 0], -45);
-    rotate(model, [0 0 1], 45);
     colormap([1, 1, 1]);
     camlight;
     while true
