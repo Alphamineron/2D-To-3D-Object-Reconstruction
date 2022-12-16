@@ -230,7 +230,7 @@
       <div class="toc-wrapper">
         <img src="images/logo-255b6f0d.png" class="logo" alt="" />
           <div class="lang-selector">
-                <a href="#" data-language-name="matlab">Matlab</a>
+                <a href="#" data-language-name="matlab">---</a>
           </div>
           <div class="search">
             <input type="text" class="search" id="input-search" placeholder="Search">
@@ -287,7 +287,7 @@
               <a href="#source-code-and-dataset" class="toc-h1 toc-link" data-title="Source Code and Dataset">Source Code and Dataset</a>
                 <ul class="toc-list-h2">
                     <li>
-                      <a href="#dataset" class="toc-h2 toc-link" data-title="Dataset">Dataset</a>
+                      <a href="#brief-details" class="toc-h2 toc-link" data-title="Brief Details">Brief Details</a>
                     </li>
                     <li>
                       <a href="#codebase-breakdown" class="toc-h2 toc-link" data-title="CodeBase Breakdown">CodeBase Breakdown</a>
@@ -305,13 +305,13 @@
         <div class="content">
           <!-- [CHAPTER1](Chapter1.html) -->
 <h1 id='2d-to-3d-object-reconstruction'>2D To 3D Object Reconstruction</h1>
+<p><strong>Project By</strong> <a href="https://github.com/Alphamineron">Ankur Singh</a>, <a href="https://github.com/kjoseph8">Kevin Joseph</a>, <a href="https://github.com/sakowal">Sarah Kowal</a>, <a href="https://github.com/Rohit-Singhal4">Rohit Singhal</a></p>
+<h1 id='background'>Background</h1><h2 id='goal'>Goal</h2>
 <blockquote>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SF3HfCjwg3s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </blockquote>
 
-<p><strong>Project By</strong> <a href="https://github.com/Alphamineron">Ankur Singh</a>, <a href="https://github.com/kjoseph8">Kevin Joseph</a>, <a href="https://github.com/sakowal">Sarah Kowal</a>, <a href="https://github.com/Rohit-Singhal4">Rohit Singhal</a></p>
-<h1 id='background'>Background</h1><h2 id='goal'>Goal</h2>
-<p>The idea for this project was created through an interest in game design and development. A curiosity in the methodology and process of creating huge virtual worlds, our group thought of researching how objects are created to look so realistic and proportionate. This led us to the central objective of this project which is to use computer vision to convert real world images of objects into mesh-based 3D models that could be imported into graphics projects or video games.</p>
+<p>The idea for this project was created through an interest  in game design and development. A curiosity in the methodology and process of creating huge virtual worlds, our group thought of researching how objects are created to look so realistic and proportionate. This led us to the central objective of this project which is to use computer vision to convert real world images of objects into mesh-based 3D models that could be imported into graphics projects or video games.</p>
 
 <aside class="warning">
 The source code and dataset along with instructions to explore the project on your own machine are included near the end of this page!
@@ -339,23 +339,57 @@ The source code and dataset along with instructions to explore the project on yo
 <h2 id='depth-map-to-stl'>Depth Map to STL</h2>
 <p>We used the MatLab surf2stl function to convert our depth maps into STL files that can be used in other programs. The clustering makes the STL file appear low-poly however, all files have the same level of poly. This could still be useful to have the model fit into a pre-existing low-poly environment, but it would not help with performance unless the user uses a tool like Blender to combine faces of the mesh.</p>
 <h1 id='result'>Result</h1>
-<p>It’s the art of inferring patterns and structures from data without giving explicit instructions on how to infer these patterns. Which is quite the opposite of what we do in traditional programming.</p>
+<blockquote>
+<table><thead>
+<tr>
+<th>Bear (20 Angles)</th>
+<th>Buddha (20 Angles)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><img src="images/bear_model-64537374.gif" alt="3D Bear gif" /></td>
+<td><img src="images/budda_model-a7a93c46.gif" alt="3D Buddha gif" /></td>
+</tr>
+</tbody></table>
+</blockquote>
+
+<p>Our computer vision model is able to successfully create stl files for a specific viewpoint/angle of a 3D model (corresponding to the 2D image data). We did realize certain strengths and limitations of our approach, such as:</p>
 
 <ul>
-<li><a href="https://www.coursera.org/learn/machine-learning">Andrew Ng&#39;s ML Course (Do at least till Week3)</a>
-
-<ul>
-<li>We expect you to complete Linear, Polynomial and Multivariate Regression from this course along with Logistic Regression. For Neural Networks and SVM, you may refer to the other provided resources.</li>
-</ul></li>
+<li>Our program is versatile enough to create accurate 3D models from the DiLiGenT-Test and DiLiGenT-MV datasets, even though the CNN was only trained on the DiLiGenT dataset with a fixed viewing angle.</li>
+<li>However, our light source estimation is not as accurate on real-world images, but that’s expected given we don’t have enough data in our dataset for more diverse environments and light sources.</li>
 </ul>
+
+<table><thead>
+<tr>
+<th>Object Name</th>
+<th>2D Image</th>
+<th>3D Render</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Bear</td>
+<td><img src="images/bear-d1c38918.png" alt="2D Bear" /></td>
+<td><img src="images/bear_model-32e6f155.png" alt="3D Bear" /></td>
+</tr>
+<tr>
+<td>Buddha</td>
+<td><img src="images/Buddha-1fe58552.png" alt="2D Buddha" /></td>
+<td><img src="images/buddha_model-a342baee.png" alt="3D Buddha" /></td>
+</tr>
+</tbody></table>
 <h1 id='future-development-and-applications'>Future Development and Applications</h1>
 <p>There are a variety of aspects of this implementation that can be improved in the future. Currently, the implementation requires the user to have a still camera as it uses uncalibrated photometric stereo. Improving this aspect by using light source estimation techniques can provide added benefit to the user as they would have to pay attention to the placement of the camera less, creating a more flexible program. Another area of improvement could be to account for non-lambertian materials, but that would most likely require using a CNN to create the entire normal map instead of just predicting light source directions.</p>
 
 <p>Furthermore, the convolutional neural network could be improved by training more diverse data or by using transfer learning to help our data adapt to different environments and light sources. Additionally, it would be good to find a way to change the stl creation from using surftostl to stlwrite using MatLab’s triangulation objects to actually decrease the poly count instead of just looking low-poly.</p>
 
 <p>These programs can be implemented in any field or area that requires virtual modeling. This includes game design, real estate, medicine, film, etc. It decreases the time and effort needed to construct objects in virtually three dimensions.</p>
-<h1 id='source-code-and-dataset'>Source Code and Dataset</h1><h2 id='dataset'>Dataset</h2>
-<p>Here, we are usng <a href="https://sites.google.com/site/photometricstereodata/single">‘DiLiGenT’ Photometric Stereo Dataset</a>.</p>
+<h1 id='source-code-and-dataset'>Source Code and Dataset</h1><h2 id='brief-details'>Brief Details</h2>
+<blockquote>
+<p><img src="images/dilgent_dataset-98af927c.png" alt="Dataset Preview Image" /></p>
+</blockquote>
+
+<p>Here, we are usng the <a href="https://sites.google.com/site/photometricstereodata/single">‘DiLiGenT’ Photometric Stereo Dataset</a>.</p>
 
 <blockquote>
 <p><em>Boxin Shi, Zhipeng Mo, Zhe Wu, Dinglong Duan, Sai-Kit Yeung, and Ping Tan, &quot;A Benchmark Dataset and Evaluation for Non-Lambertian and Uncalibrated Photometric Stereo&quot;, In IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), Volume 41, Issue 2, Pages 271-284,2019. <a href="http://alumni.media.mit.edu/~shiboxin/files/Shi_TPAMI19.pdf">PDF</a> <a href="https://drive.google.com/file/d/1cf3uYTTTfS5ZyCvj2agdmVsmtAcTZpX2/view">Supplementary Material</a></em></p>
@@ -363,7 +397,7 @@ The source code and dataset along with instructions to explore the project on yo
 
 <p>We modified the DiLiGenT dataset to be smaller and easier to load the data. Download the dataset from <a href="https://drive.google.com/file/d/1qqTqhjb5wVYreaZFCB5s-_SVZgIHdYXv/view?usp=sharing">this Google Drive</a>.</p>
 
-<p>light_cnn_inceptionv3.mat: Our code includes a pre-trained network for estimating light-source directions based on the inception-v3 CNN in MatLab.</p>
+<p><code>light_cnn_inceptionv3.mat</code>: Our code includes a pre-trained network for estimating light-source directions based on the inception-v3 CNN in MatLab.</p>
 
 <p>Our code includes many different functions for different steps of our pipeline. You can find the code on <a href="https://github.com/Alphamineron/2D-To-3D-Object-Reconstruction/tree/master">Github</a>.</p>
 <h2 id='codebase-breakdown'>CodeBase Breakdown</h2>
@@ -387,8 +421,6 @@ The source code and dataset along with instructions to explore the project on yo
 <p><code>createModel(&quot;DiLiGenT/bearPNG&quot;, &#39;bear.stl&#39;, 7)</code></p>
 
 <p><code>renderMV(&quot;DiLiGenT-MV/buddhaPNG&quot;)</code></p>
-
-<p>% <em>make sure to pause script after loaded and readjust rotation for better view.</em></p>
 </blockquote>
 
 <p><code>loadData</code>: loads images and spherical coordinates from one of the directories in any of the DiLiGenT datasets (example: loadData(“DiLiGenT/bearPNG”)). The expectation is that there is a filenames.txt file with the names of all image files listed, and a light_directions.txt file with all the light directions in cartesian coordinates listed if you want to use pre-measured light directions.</p>
@@ -407,16 +439,16 @@ The source code and dataset along with instructions to explore the project on yo
 
 <p><code>frankotChellappa</code>: This routine can be found in <a href="https://github.com/dhr/matlab-tools/blob/master/ptgf/frankotChellappa.m">matlab-tools</a> repository. It creates a depth map from a normal map using the Frankot-Chellappa algorithm.</p>
 
-<p><code>createModel</code>: creates a 3d model from a directory in the DiLiGenT dataset. The first parameter specifies the directory, the second specifies the filename for the output, and the third specifies the number of clusters with a value of 0 skipping the clustering (example: createModel(“DiLiGenT/bearPNG”, ‘bear.stl’, 7)). This function assumes the provided directory follows the same restrictions specified in the loadData function, and it must also include a mask.png to only include the object without the background.</p>
+<p><code>renderModel</code>: renders a 3d model from a directory in the DiLiGenT dataset. The first parameter specifies the input directory and the second specifies the number of clusters with a value of 0 skipping the clustering (example: renderModel(“DiLiGenT/bearPNG”, 7)). This function assumes the provided directory follows the same restrictions specified in the loadData function, and it must also include a mask.png to only include the object without the background.</p>
 
-<p><code>renderMV</code>: renders an animation using MatLab’s built-in mesh function using images from a directory in the DiLiGenT-MV dataset (example: renderMV(“DiLiGenT-MV/bearPNG”)). This function assumes the directory consists of subdirectories for each view point in order and that each subdirectory is formatted similarly to what is specified in the createModel function. To rotate the view, you need to pause the script because this function runs on an endless loop.</p>
+<p><code>createModel</code>: creates an stl file from a directory in the DiLiGenT dataset. The first parameter specifies the directory, the second specifies the filename for the output, and the third specifies the number of clusters with a value of 0 skipping the clustering (example: createModel(“DiLiGenT/bearPNG”, ‘bear.stl’, 7)). This function has the same assumptions for the directory as the renderModel function.</p>
 
 <p>Besides the functions we added to the GitHub repo, there are some built-in functions to use. These include: <code>load(“light_cnn_inceptionv3”)</code> to load a pre-trained network, <code>predict(net, imgs)</code> for using CNN net with input imgs to predict the light source directions, and the matlab add-on <code>surf2stl</code> for turning a depthmap into an stl file.</p>
 
         </div>
         <div class="dark-box">
             <div class="lang-selector">
-                  <a href="#" data-language-name="matlab">Matlab</a>
+                  <a href="#" data-language-name="matlab">---</a>
             </div>
         </div>
       </div>
