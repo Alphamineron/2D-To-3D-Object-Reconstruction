@@ -1,4 +1,5 @@
-function net = trainLightDir(xTrain, yTrain, xValidation, yValidation)
+function net = trainLightDir()
+    [xTrain, yTrain, xValidation, yValidation] = createTrainValidation();
     lgraph = layerGraph();
 
     tempLayers = [

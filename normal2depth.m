@@ -12,6 +12,12 @@ function depth = normal2depth(normal)
             depth1(y, x) =  depth1(y, x-1) - dx(y, x);
         end
     end
+    for y = 1:H
+        mean1 = mean(depth1(y, :));
+        for x = 1:W
+            depth1(y, x) =  depth1(y, x) - mean1;
+        end
+    end
     depth2 = zeros(H, W);
     depth2(1, 1) = 0;
     for x = 2:W
@@ -22,9 +28,13 @@ function depth = normal2depth(normal)
             depth2(y, x) = depth2(y-1, x) + dy(y, x);
         end
     end
-    %depth = (depth1 + depth2) / 2;
-    depth = depth1;
-    %depth = depth2;
+    for x = 1:W
+        mean2 = mean(depth2(:, x));
+        for y = 1:H
+            depth2(y, x) = depth2(y, x) - mean2;
+        end
+    end
+    depth = depth1 + depth2;
     depth = depth - min(depth(:));
     depth = depth / max(depth(:));
 end

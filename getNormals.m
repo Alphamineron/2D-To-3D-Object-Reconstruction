@@ -3,7 +3,8 @@ function normals = getNormals(imgs, lightDirs)
     
     S = inv(lightDirs.' * lightDirs) * lightDirs.';
     
-    [H, W, ~] = size(grayImgs);
+    [H, W, C] = size(grayImgs);
+
     normals = zeros(H, W, 3);
     for x = 1:W
         for y=1:H
@@ -15,5 +16,4 @@ function normals = getNormals(imgs, lightDirs)
             normals(y, x, 3) = normal(3);
         end
     end
-    figure; imshow(normals);
 end
