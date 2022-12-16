@@ -228,7 +228,7 @@
         </span>
       </a>
       <div class="toc-wrapper">
-        <img src="images/logo-255b6f0d.png" class="logo" alt="" />
+        <img src="images/logo-3881d2aa.png" class="logo" alt="" />
           <div class="lang-selector">
                 <a href="#" data-language-name="matlab">---</a>
           </div>
@@ -331,10 +331,32 @@ The source code and dataset along with instructions to explore the project on yo
 <h2 id='light-direction-estimation'>Light Direction Estimation</h2>
 <p>We then needed to address finding the light directions of each image. Our light source direction vector estimations for the images were obtained using a Convolutional Neural Network. Prior to the CNN, the light source directions were changed from cartesian to spherical coordinates, and were later transformed back. We found that when a large number of photos is used, the light direction estimates produced by the CNN increased the photometric stereo accuracy. </p>
 <h2 id='photometric-stereo'>Photometric Stereo</h2>
+<blockquote>
+<p><img src="images/normalmap-f4124f95.png" alt="" /></p>
+</blockquote>
+
 <p>The next step was identifying varying depths and surface orientations in the images. We used a photometric stereo to produce surface normals at each pixel of each image. We solved for the Lambertian case, which only cares about diffuse lighting, by doing the matrix calculation mentioned in the lecture with the image intensities and estimated light source directions. To allow for the use of more than 3 images to reduce the effects of noise, we used least squares estimation.</p>
 <h2 id='clustering-normals'>Clustering Normals</h2>
+<blockquote>
+<p><img src="images/low poly-3230c67f.png" alt="" /></p>
+</blockquote>
+
 <p>The next step helps with the defining characteristic of our program, making low-poly models. The photometric stereo is very helpful because it produces a normal map instead of just a depth map. With the normal map, we can use the image coordinates and surface normals in a clustering algorithm that groups nearby pixels with similar surface normals. Using k-means clustering is what gives the user the ability to choose their poly level. A higher value of k yields a higher-poly model because there will be more clusters with different surface normals at their centers.</p>
 <h2 id='normal-to-depth-map'>Normal to depth map</h2>
+<blockquote>
+<table><thead>
+<tr>
+<th>Without Frankot-Chellappa Algorithm</th>
+<th>With Frankot-Chellappa Algorithm</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><img src="images/woFC-6b369c60.png" alt="" /></td>
+<td><img src="images/wFC-2ee7e5db.png" alt="" /></td>
+</tr>
+</tbody></table>
+</blockquote>
+
 <p>Our next concern was generating a depth map from the normal map. The normals can be thought of as the derivative of the depth. Since the normal map is discrete, our initial thought was to iteratively go through the pixels and add the normal’s respective dx/dz or dy/dz values. However, this creates a lot of noise. To compensate for this, we instead decided to use the frankot-chellappa algorithm. This algorithm involves a least squares estimation over the fourier domain to make a depth map with less noise.</p>
 <h2 id='depth-map-to-stl'>Depth Map to STL</h2>
 <p>We used the MatLab surf2stl function to convert our depth maps into STL files that can be used in other programs. The clustering makes the STL file appear low-poly however, all files have the same level of poly. This could still be useful to have the model fit into a pre-existing low-poly environment, but it would not help with performance unless the user uses a tool like Blender to combine faces of the mesh.</p>
