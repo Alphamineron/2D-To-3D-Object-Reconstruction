@@ -1,1 +1,2 @@
-createModel("DiLiGenT/bearPNG", 'bear.stl', 7);
+renderModel("DiLiGenT/bearPNG", 7);
+renderModel("DiLiGenT/buddhaPNG", 7);
